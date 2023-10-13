@@ -23,7 +23,7 @@ const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
 <template>
     <UContainer class="sticky py-2.5 w-full top-0">
         <nav
-            class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-gray-200  backdrop-blur gap-x-8">
+            class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-gray-200/50 backdrop-blur bg-slate-50/70 gap-x-12">
             <NuxtLink class="text-lg font-semibold text-gray-800 ml-4" to="/">danishrashidin</NuxtLink>
             <template v-if="breakpoints.lg.value">
                 <div class="flex flex-row items-center gap-x-6">
