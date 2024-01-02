@@ -1,26 +1,44 @@
+const animate = require("tailwindcss-animate")
+
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
+  darkMode: ["class"],
   content: [
-    "./components/**/*.{js,vue,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
+    './pages/**/*.{ts,tsx,vue}',
+    './components/**/*.{ts,tsx,vue}',
+    './app/**/*.{ts,tsx,vue}',
+    './src/**/*.{ts,tsx,vue}',
+    './layouts/**/*.vue',
+    './plugins/**/*.{js,ts}',
     "./app.vue",
     "./error.vue",
   ],
   theme: {
-    extend: {},
-  },
-  variants: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
-      opacity: ['disabled'],
-      cursor: ['disabled'],
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms')({
-      strategy: "base"
-    }),
-  ],
+  plugins: [animate, require('@tailwindcss/forms')({
+    strategy: "base"
+  })],
 }
-

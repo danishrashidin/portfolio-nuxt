@@ -4,6 +4,10 @@
 
 @layer base {
   * {
-    @apply transition-all;
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-neutral-900;
   }
 }
