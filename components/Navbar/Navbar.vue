@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { breakpointsTailwind } from '@vueuse/core'
 
 const links = [{
     label: "About",
@@ -15,7 +14,6 @@ const links = [{
     to: "/resume"
 }]
 
-const breakpoints = useBreakpoints(breakpointsTailwind)
 const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
 
 const navbarRef = ref(null)
@@ -28,7 +26,7 @@ const isNavbarVisible = useElementVisibility(navbarRef)
         <div
             class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-white gap-x-12">
             <NuxtLink class="text-xl font-semibold text-white ml-4 tracking-wide" to="/">danishrashidin</NuxtLink>
-            <template v-if="breakpoints.lg.value">
+            <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-6">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
                         class="transition-all text-sm font-medium hover:underline underline-offset-4 tracking-wide text-white">
@@ -36,14 +34,12 @@ const isNavbarVisible = useElementVisibility(navbarRef)
                     </NuxtLink>
                 </div>
                 <MyButton variant="secondary" to="#contact">Contact Me</MyButton>
-            </template>
-            <template v-else>
-                <UButton color="white" size="lg" variant="link" :ui="{
-                    icon: {
-                        base: 'text-white'
-                    }
-                }" icon="i-heroicons-bars-3-bottom-right-20-solid" @click="toggleNavDrawerShown(true)" />
-            </template>
+            </div>
+            <UButton class="lg:hidden" color="white" size="lg" variant="link" :ui="{
+                icon: {
+                    base: 'text-white'
+                }
+            }" icon="i-heroicons-bars-3-bottom-right-20-solid" @click="toggleNavDrawerShown(true)" />
         </div>
     </UContainer>
 
@@ -54,7 +50,7 @@ const isNavbarVisible = useElementVisibility(navbarRef)
         <div
             class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-slate-200/50 backdrop-blur bg-slate-50/75 gap-x-12">
             <NuxtLink class="text-xl font-semibold text-gray-800 ml-4 tracking-wide" to="/">danishrashidin</NuxtLink>
-            <template v-if="breakpoints.lg.value">
+            <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-6">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
                         class="text-sm font-normal hover:text-gray-900 leading-relaxed text-gray-600">
@@ -62,14 +58,12 @@ const isNavbarVisible = useElementVisibility(navbarRef)
                     </NuxtLink>
                 </div>
                 <MyButton to="#contact">Contact Me</MyButton>
-            </template>
-            <template v-else>
-                <UButton color="gray" size="lg" variant="ghost" icon="i-heroicons-bars-3-bottom-right-20-solid"
-                    @click="toggleNavDrawerShown(true)" />
-            </template>
+            </div>
+            <UButton class="lg:hidden" color="gray" size="lg" variant="ghost"
+                icon="i-heroicons-bars-3-bottom-right-20-solid" @click="toggleNavDrawerShown(true)" />
         </div>
     </UContainer>
-    <USlideover v-if="!breakpoints.lg.value" v-model="isNavDrawerShown" :ui="{
+    <USlideover class="lg:hidden" v-model="isNavDrawerShown" :ui="{
         width: 'max-w-xs'
     }">
         <div class="p-4 flex flex-col gap-y-4">
