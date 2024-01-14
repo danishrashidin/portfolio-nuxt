@@ -53,10 +53,12 @@ const skills: {
     <section class="bg-neutral-900 py-48">
         <UContainer>
             <div class="lg:w-2/3 flex flex-col items-center lg:items-start gap-y-4">
-                <h1 class="text-center lg:text-left text-5xl md:text-6xl text-white font-bold">Hello World!<br> I'm Danish
+                <h1 class="text-center lg:text-left text-4xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br> I'm
+                    Danish
                     Rashidin
                 </h1>
-                <p class="text-center lg:text-left text-base md:text-lg font-normal text-neutral-300">A passionate software
+                <p class="text-center lg:text-left text-base md:text-lg font-normal text-neutral-300">A 2-year experienced
+                    passionate software
                     engineer from
                     Kuala
                     Lumpur 🇲🇾

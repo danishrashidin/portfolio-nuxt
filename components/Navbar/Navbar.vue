@@ -1,5 +1,6 @@
 <script setup lang="ts">
-
+import Logo from '~/components/brand/Logo.vue';
+import Socials from '~/components/brand/Socials.vue';
 const links = [{
     label: "About",
     to: "/#about"
@@ -24,8 +25,8 @@ const isNavbarVisible = useElementVisibility(navbarRef)
 <template>
     <UContainer ref="navbarRef" as="nav" class="z-10 my-2.5">
         <div
-            class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-white gap-x-12">
-            <NuxtLink class="text-xl font-semibold text-white ml-4 tracking-wide" to="/">danishrashidin</NuxtLink>
+            class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-white gap-x-12">
+            <Logo class="text-white" />
             <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-6">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
@@ -49,7 +50,7 @@ const isNavbarVisible = useElementVisibility(navbarRef)
     }">
         <div
             class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-slate-200/50 backdrop-blur bg-slate-50/75 gap-x-12">
-            <NuxtLink class="text-xl font-semibold text-gray-800 ml-4 tracking-wide" to="/">danishrashidin</NuxtLink>
+            <Logo class="ml-4" />
             <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-6">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
@@ -66,13 +67,16 @@ const isNavbarVisible = useElementVisibility(navbarRef)
     <USlideover class="lg:hidden" v-model="isNavDrawerShown" :ui="{
         width: 'max-w-xs'
     }">
-        <div class="p-4 flex flex-col gap-y-4">
-            <UButton color="gray" size="lg" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="self-end"
-                @click="toggleNavDrawerShown(false)" />
-            <UVerticalNavigation :links="links" :ui="{
-                wrapper: 'relative flex flex-col gap-2'
-            }" />
-            <MyButton to="#contact" class="self-end">Contact Me</MyButton>
+        <div class="h-full p-4 flex flex-col justify-between">
+            <div class="flex flex-col gap-y-4 ">
+                <UButton color="gray" size="lg" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="self-end"
+                    @click="toggleNavDrawerShown(false)" />
+                <UVerticalNavigation :links="links" :ui="{
+                    wrapper: 'relative flex flex-col gap-2'
+                }" />
+                <MyButton to="#contact" class="self-end">Contact Me</MyButton>
+            </div>
+            <Socials class="self-end" />
         </div>
     </USlideover>
 </template>
