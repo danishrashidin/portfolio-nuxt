@@ -6,7 +6,7 @@ const links = [{
     to: "/#about"
 }, {
     label: "Skills",
-    to: "#skills"
+    to: "/#skills"
 }, {
     label: "Projects",
     to: "/projects",
@@ -23,7 +23,7 @@ const isNavbarVisible = useElementVisibility(navbarRef)
 </script>
 
 <template>
-    <UContainer ref="navbarRef" as="nav" class="z-10 my-2.5">
+    <UContainer ref="navbarRef" as="nav" class="z-10">
         <div
             class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-white gap-x-12">
             <Logo class="text-white" />

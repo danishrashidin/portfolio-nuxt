@@ -7,7 +7,7 @@ import Socials from '~/components/brand/Socials.vue'
     <footer class="py-8 bg-neutral-100">
         <UContainer class="mx-auto">
             <div class="flex flex-row justify-between">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-0.5">
                     <Logo />
                     <p class="text-left text-sm font-normal text-neutral-500">Powered by Nuxt, Strapi ⚡️</p>
                 </div>

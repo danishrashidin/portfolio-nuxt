@@ -41,7 +41,7 @@ onMounted(async () => {
 <template>
     <div class="relative flex flex-col gap-1.5 overflow-x-auto">
         <div id="cal-heatmap"></div>
-        <p class="sticky left-0 text-left text-sm font-normal text-neutral-500">Past 6-month contributions, powered by
+        <p class="sticky left-0 text-left text-sm font-normal text-gray-500">Past 6-month contributions, powered by
             Github GraphQL API ⚡️</p>
     </div>
 </template>

@@ -48,12 +48,12 @@ const skills: {
 }]
 </script>
 <template>
-    <!-- HEADER -->
-    <section class="bg-neutral-900 py-40">
+    <!-- HERO -->
+    <section class="bg-neutral-900 py-20 md:py-40">
         <UContainer>
-            <div class="lg:w-1/2 flex flex-col">
-                <div class="flex flex-col items-center lg:items-start gap-y-4 mb-20">
-                    <h1 class="text-center lg:text-left text-4xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br>
+            <div class="lg:w-1/2 flex flex-col items-center lg:items-start">
+                <div class="max-w-80 md:max-w-xl flex flex-col items-center lg:items-start gap-y-4 mb-20">
+                    <h1 class="text-center lg:text-left text-3xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br>
                         I'm
                         Danish
                         Rashidin
@@ -68,10 +68,7 @@ const skills: {
                     <MyButton variant="secondary" to="#">View My Work</MyButton>
                 </div>
                 <ClientOnly>
-                    <HeatmapGithubContributions />
-                    <template #fallback>
-                        <p class="text-white">Loading...</p>
-                    </template>
+                    <HeatmapGithubContributions class="w-full md:w-fit max-w-96 md:max-w-none" />
                 </ClientOnly>
             </div>
         </UContainer>
@@ -79,10 +76,11 @@ const skills: {
     <UDivider />
 
     <!-- Skills Section -->
-    <section id="skills" class="pt-16 lg:pt-24 bg-white">
+    <section id="skills" class="pt-20 lg:pt-24 bg-white">
         <UContainer>
             <div class="flex flex-col">
-                <h1 class="text-left text-4xl lg:text-5xl font-bold text-neutral-900 mb-16">My Skills</h1>
+                <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">My Skills
+                </h1>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     <div v-for="skill in skills" :key="skill.title"
                         class="flex flex-col border border-neutral-200 shadow-sm rounded-lg p-4">
@@ -110,10 +108,11 @@ const skills: {
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 lg:py-24 bg-white">
+    <section id="projects" class="py-20 lg:py-24 bg-white">
         <UContainer>
             <div class="flex flex-col">
-                <h1 class="text-left text-4xl lg:text-5xl font-bold text-neutral-900 mb-16">My Past Projects</h1>
+                <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">My Past
+                    Projects</h1>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div v-for="i in 4" :key="i" class="flex flex-col border border-neutral-200 shadow-sm rounded-lg p-4">
                         <div class="flex flex-row justify-between items-center mb-4">
