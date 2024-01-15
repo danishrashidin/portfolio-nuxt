@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 /**
  * Skills
  */
@@ -50,20 +49,30 @@ const skills: {
 </script>
 <template>
     <!-- HEADER -->
-    <section class="bg-neutral-900 py-48">
+    <section class="bg-neutral-900 py-40">
         <UContainer>
-            <div class="lg:w-2/3 flex flex-col items-center lg:items-start gap-y-4">
-                <h1 class="text-center lg:text-left text-4xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br> I'm
-                    Danish
-                    Rashidin
-                </h1>
-                <p class="text-center lg:text-left text-base md:text-lg font-normal text-neutral-300">A 2-year experienced
-                    passionate software
-                    engineer from
-                    Kuala
-                    Lumpur 🇲🇾
-                </p>
-                <MyButton variant="secondary" to="#">View My Work</MyButton>
+            <div class="lg:w-1/2 flex flex-col">
+                <div class="flex flex-col items-center lg:items-start gap-y-4 mb-20">
+                    <h1 class="text-center lg:text-left text-4xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br>
+                        I'm
+                        Danish
+                        Rashidin
+                    </h1>
+                    <p class="text-center lg:text-left text-base md:text-lg font-normal text-neutral-300">A 2-year
+                        experienced
+                        passionate software
+                        engineer from
+                        Kuala
+                        Lumpur 🇲🇾
+                    </p>
+                    <MyButton variant="secondary" to="#">View My Work</MyButton>
+                </div>
+                <ClientOnly>
+                    <HeatmapGithubContributions />
+                    <template #fallback>
+                        <p class="text-white">Loading...</p>
+                    </template>
+                </ClientOnly>
             </div>
         </UContainer>
     </section>

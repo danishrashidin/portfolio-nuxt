@@ -11,3 +11,11 @@
     @apply bg-neutral-900;
   }
 }
+
+.ch-domain-text {
+  @apply text-xs font-normal fill-gray-500;
+}
+
+.ch-domain-bg {
+  @apply fill-transparent;
+}

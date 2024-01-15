@@ -5,8 +5,27 @@ export default defineNuxtConfig({
     "@formkit/auto-animate/nuxt",
     "@vueuse/nuxt",
     "@nuxt/image",
-    "@nuxtjs/google-fonts"
+    "@nuxtjs/google-fonts",
+    "nuxt-graphql-client"
   ],
+  runtimeConfig: {
+    public: {
+      'graphql-client': {
+        clients: {
+          github: {
+            host: process.env.GQL_GITHUB_HOST,
+            token: process.env.GQL_GITHUB_TOKEN,
+            headers: {
+              "User-Agent": "portfolio-nuxt"
+            },
+            codegenHeaders: {
+              "User-Agent": "portfolio-nuxt"
+            }
+          }
+        }
+      }
+    }
+  },
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   postcss: {
@@ -29,6 +48,7 @@ export default defineNuxtConfig({
     }
   },
   hooks: {
+    // shadcn/vue integration
     'components:dirs': (dirs) => {
       dirs.unshift({
         path: '~/components/ui',
