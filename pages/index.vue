@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ArrowUpRightSquare, Github, Globe } from "lucide-vue-next"
+import type { Project } from '~/types/projects';
+const { data: projects } = await useFetch<Project[]>('/api/projects/display')
+
 /**
  * Skills
  */
@@ -51,14 +55,14 @@ const skills: {
     <!-- HERO -->
     <section class="bg-neutral-900 py-20 md:py-40">
         <UContainer>
-            <div class="lg:w-1/2 flex flex-col items-center lg:items-start">
-                <div class="max-w-80 md:max-w-xl flex flex-col items-center lg:items-start gap-y-4 mb-20">
-                    <h1 class="text-center lg:text-left text-3xl md:text-5xl lg:text-6xl text-white font-bold">Hi! 👋🏼<br>
+            <div class="lg:w-1/2 flex flex-col md:items-center lg:items-start">
+                <div class="flex flex-col items-start mb-20">
+                    <h1 class="text-left text-4xl md:text-5xl lg:text-6xl text-white font-bold mb-4">Hello! 👋🏼<br>
                         I'm
                         Danish
                         Rashidin
                     </h1>
-                    <p class="text-center lg:text-left text-base md:text-lg font-normal text-neutral-300">A 2-year
+                    <p class="text-left text-base md:text-lg font-normal text-gray-200 mb-6">A 2-year
                         experienced
                         passionate software
                         engineer from
@@ -73,13 +77,36 @@ const skills: {
             </div>
         </UContainer>
     </section>
-    <UDivider />
+
+    <!-- About Him Section -->
+    <section id="about" class="pt-20 bg-white">
+        <UContainer>
+            <div class="flex flex-col md:flex-row w-full gap-8">
+                <!-- Texts -->
+                <div class="flex flex-col gap-6 md:w-1/2">
+                    <h2 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900">
+                        About Me</h2>
+                    <p class="text-left text-base md:text-lg font-normal text-gray-500">Hey, just call me Danish. I was a
+                        Software Engineering graduate from University of Malaya, Kuala Lumpur. Currently pursuing my career
+                        in Tech.<br><br>
+                        I used to do Front-end Development since the beginning of my career but I am someone who
+                        can do more, aka Jack of All Trades 😉. I am keen to learn new technologies along my journey while
+                        keeping a strong knowledge on the pillars of programming, i.e Data Structures, Algorithms
+                        etc.<br><br>
+                        Apart from all the geekiness, I also play sports to maintain a healthy body and mind. Them being
+                        tennis 🎾, badminton 🏸, and even golf 🏌🏻 casually. Code and game for fun in the void of work 🤓.
+                    </p>
+                </div>
+
+            </div>
+        </UContainer>
+    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="pt-20 lg:pt-24 bg-white">
         <UContainer>
             <div class="flex flex-col">
-                <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">My Skills
+                <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">What I Do
                 </h1>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     <div v-for="skill in skills" :key="skill.title"
@@ -113,16 +140,40 @@ const skills: {
             <div class="flex flex-col">
                 <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">My Past
                     Projects</h1>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div v-for="i in 4" :key="i" class="flex flex-col border border-neutral-200 shadow-sm rounded-lg p-4">
-                        <div class="flex flex-row justify-between items-center mb-4">
-                            <h6 class="text-left text-lg lg:text-xl font-semibold text-gray-900">Typescript</h6>
-                            <p>stacks</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
+                    <div v-for="project in projects" :key="project.title"
+                        class="flex flex-col border border-neutral-200 shadow-sm rounded-lg overflow-hidden">
+                        <NuxtImg :src="project.coverUri" class="min-h-48 w-full object-contain object-center" />
+                        <UDivider />
+                        <div class="flex flex-col p-4">
+                            <div class="flex flex-row justify-between items-center gap-x-3 mb-4">
+                                <h6 class="text-left text-lg font-medium text-gray-900">{{ project.title }}
+                                </h6>
+                                <div class="flex flex-row gap-4">
+                                    <NuxtLink v-if="!!project.link" :to="project.link" target="_blank" alt="Open Page">
+                                        <Globe :size="20" class="hover:scale-110 transition-transform" />
+                                    </NuxtLink>
+                                    <NuxtLink v-if="!!project.githubPage" :to="project.githubPage" target="_blank"
+                                        alt="Github Repo">
+                                        <Github :size="20" class="hover:scale-110 transition-transform" />
+                                    </NuxtLink>
+                                    <NuxtLink :to="`/projects/${project.id}`" target="_blank" alt="View">
+                                        <ArrowUpRightSquare :size="20" class="hover:scale-110 transition-transform" />
+                                    </NuxtLink>
+                                </div>
+                            </div>
+                            <p class="text-left text-sm md:text-base font-normal text-gray-500 mb-10">{{
+                                project.description }}</p>
+                            <div class="flex flex-row items-center gap-2">
+                                <UBadge v-for="skill in project.skills.slice(0, 3)" color="gray" variant="solid">{{ skill }}
+                                </UBadge>
+                                <span v-if="project.skills.length > 3"
+                                    class="text-left text-sm font-normal text-gray-500">and more...</span>
+                            </div>
                         </div>
-                        <p class="text-left text-base font-normal text-neutral-500 mb-8">Lorem ipsum, lorem ipsum</p>
-                        <MyButton to="#" class="self-start">View related projects</MyButton>
                     </div>
                 </div>
+                <MyButton to="/projects" class="self-center">View All Projects</MyButton>
             </div>
         </UContainer>
     </section>

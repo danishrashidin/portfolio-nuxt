@@ -1,0 +1,28 @@
+# Get Project Displays for Home Page
+query GetProjectDisplays {
+  projects(pagination: { limit: 3 }) {
+    data {
+      id
+      attributes {
+        title
+        description
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        skills {
+          data {
+            attributes {
+              text
+            }
+          }
+        }
+        link
+        githubPage
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "nuxt-graphql-client"
   ],
   runtimeConfig: {
+    strapiHost: process.env.STRAPI_HOST,
     public: {
       'graphql-client': {
         clients: {
@@ -21,6 +22,10 @@ export default defineNuxtConfig({
             codegenHeaders: {
               "User-Agent": "portfolio-nuxt"
             }
+          },
+          strapi: {
+            host: process.env.GQL_STRAPI_HOST,
+            token: process.env.GQL_STRAPI_TOKEN,
           }
         }
       }
