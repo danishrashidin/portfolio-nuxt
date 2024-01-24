@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     strapiHost: process.env.STRAPI_HOST,
     public: {
       'graphql-client': {
+        codegen: {
+          disableOnBuild: true
+        },
         clients: {
           github: {
             host: process.env.GQL_GITHUB_HOST,
