@@ -34,7 +34,13 @@ export default defineNuxtConfig({
       }
     }
   },
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+
+    timeline: {
+      enabled: true
+    }
+  },
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -67,6 +73,15 @@ export default defineNuxtConfig({
         // prevent adding another prefix component by it's path.
         pathPrefix: false
       })
+    }
+  },
+  routeRules: {
+    "/": {
+      ssr: false,
+      prerender: true
+    },
+    "/api/**": {
+      cors: true
     }
   }
 });

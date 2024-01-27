@@ -17,9 +17,8 @@ const links = [{
 
 const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
 
-const navbarRef = ref(null)
+const navbarRef = useState<HTMLElement | null>('navbar-ref', () => null)
 const isNavbarVisible = useElementVisibility(navbarRef)
-
 </script>
 
 <template>
