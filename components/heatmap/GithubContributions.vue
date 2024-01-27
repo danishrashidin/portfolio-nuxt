@@ -2,17 +2,26 @@
 import Heatmap from 'cal-heatmap'
 import moment from 'moment'
 
+const { data: contributions } = await useFetch('/api/github/contributions')
 const cal = new Heatmap()
 
-onMounted(async () => {
-    const contributions = await $fetch('/api/github/contributions')
+watch(contributions, () => {
+    if (contributions.value)
+        cal.fill(contributions.value.days.map(day => ({
+            date: day.date,
+            count: day.count,
+            level: day.level
+        })))
+})
+
+onMounted(() => {
     cal.paint({
         range: 8,
         date: {
             start: moment().subtract(6, 'month').startOf('month').toDate()
         },
         data: {
-            source: contributions.days.map(day => ({
+            source: contributions.value?.days.map(day => ({
                 date: day.date,
                 count: day.count,
                 level: day.level
