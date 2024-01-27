@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { ArrowUpRightSquare, Github, Globe } from "lucide-vue-next"
-import type { Project } from '~/types/projects';
-const { data: projects } = await useFetch<Project[]>('/api/projects/display')
+useSeoMeta({
+    titleTemplate(title) {
+        return `${title} - danishrashidin`
+    },
+    title: "Home",
+    description: "Danish Rashidin's Portfolio",
+    ogDescription: "Danish Rashidin's Portfolio",
+})
 
 /**
  * Skills
@@ -53,7 +58,7 @@ const skills: {
 </script>
 <template>
     <!-- HERO -->
-    <section class="bg-neutral-900 py-20 md:py-40">
+    <section class="bg-neutral-900 py-20 md:py-40 min-h-screen">
         <UContainer>
             <div class="lg:w-1/2 flex flex-col md:items-center lg:items-start">
                 <div class="flex flex-col items-start mb-20">
@@ -71,15 +76,18 @@ const skills: {
                     </p>
                     <MyButton variant="secondary" to="#">View My Work</MyButton>
                 </div>
-                <ClientOnly>
-                    <HeatmapGithubContributions class="w-full md:w-fit max-w-96 md:max-w-none" />
-                </ClientOnly>
+                <Suspense>
+                    <HeatmapGithubContributions class="w-full lg:w-fit" />
+                    <template #fallback>
+                        <div class="w-full h-32 max-w-xl animate-pulse bg-neutral-700 rounded-lg" />
+                    </template>
+                </Suspense>
             </div>
         </UContainer>
     </section>
 
     <!-- About Him Section -->
-    <section id="about" class="pt-20 bg-white">
+    <section id="about" class="pt-24 pb-12 bg-white">
         <UContainer>
             <div class="flex flex-col md:flex-row w-full gap-8">
                 <!-- Texts -->
@@ -103,7 +111,7 @@ const skills: {
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="pt-20 lg:pt-24 bg-white">
+    <section id="skills" class="pt-24 pb-12 bg-white">
         <UContainer>
             <div class="flex flex-col">
                 <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">What I Do
@@ -135,44 +143,12 @@ const skills: {
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 lg:py-24 bg-white">
+    <section id="projects" class="pt-24 pb-12 bg-white">
         <UContainer>
             <div class="flex flex-col">
                 <h1 class="text-left text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 md:mb-16">My Past
                     Projects</h1>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
-                    <div v-for="project in projects" :key="project.title"
-                        class="flex flex-col border border-neutral-200 shadow-sm rounded-lg overflow-hidden">
-                        <NuxtImg :src="project.coverUri" class="min-h-48 w-full object-contain object-center" />
-                        <UDivider />
-                        <div class="flex flex-col p-4">
-                            <div class="flex flex-row justify-between items-center gap-x-3 mb-4">
-                                <h6 class="text-left text-lg font-medium text-gray-900">{{ project.title }}
-                                </h6>
-                                <div class="flex flex-row gap-4">
-                                    <NuxtLink v-if="!!project.link" :to="project.link" target="_blank" alt="Open Page">
-                                        <Globe :size="20" class="hover:scale-110 transition-transform" />
-                                    </NuxtLink>
-                                    <NuxtLink v-if="!!project.githubPage" :to="project.githubPage" target="_blank"
-                                        alt="Github Repo">
-                                        <Github :size="20" class="hover:scale-110 transition-transform" />
-                                    </NuxtLink>
-                                    <NuxtLink :to="`/projects/${project.id}`" target="_blank" alt="View">
-                                        <ArrowUpRightSquare :size="20" class="hover:scale-110 transition-transform" />
-                                    </NuxtLink>
-                                </div>
-                            </div>
-                            <p class="text-left text-sm md:text-base font-normal text-gray-500 mb-10">{{
-                                project.description }}</p>
-                            <div class="flex flex-row items-center gap-2">
-                                <UBadge v-for="skill in project.skills.slice(0, 3)" color="gray" variant="solid">{{ skill }}
-                                </UBadge>
-                                <span v-if="project.skills.length > 3"
-                                    class="text-left text-sm font-normal text-gray-500">and more...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ProjectGrid />
                 <MyButton to="/projects" class="self-center">View All Projects</MyButton>
             </div>
         </UContainer>
