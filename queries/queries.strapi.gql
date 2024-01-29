@@ -26,3 +26,18 @@ query GetProjectDisplays {
     }
   }
 }
+
+# Get Skills
+query GetSkills($limit: Int, $offset: Int) {
+  tags(pagination: { limit: $limit, start: $offset }) {
+    data {
+      id
+      attributes {
+        slug
+        text
+        iconUrl
+        proficiency
+      }
+    }
+  }
+}

@@ -24,10 +24,10 @@ const isNavbarVisible = useElementVisibility(navbarRef)
 <template>
     <UContainer ref="navbarRef" as="nav" class="z-10">
         <div
-            class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-white gap-x-12">
+            class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-neutral-500 gap-x-12">
             <Logo class="text-white" />
             <div class="hidden lg:flex flex-row gap-12">
-                <div class="flex flex-row items-center gap-x-6">
+                <div class="flex flex-row items-center gap-x-8">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
                         class="transition-all text-sm font-medium hover:underline underline-offset-4 tracking-wide text-white">
                         {{ link.label }}
@@ -51,7 +51,7 @@ const isNavbarVisible = useElementVisibility(navbarRef)
             class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-slate-200/50 backdrop-blur bg-slate-50/75 gap-x-12">
             <Logo class="ml-4" />
             <div class="hidden lg:flex flex-row gap-12">
-                <div class="flex flex-row items-center gap-x-6">
+                <div class="flex flex-row items-center gap-x-8">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
                         class="text-sm font-normal hover:text-gray-900 leading-relaxed text-gray-600">
                         {{ link.label }}
