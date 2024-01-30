@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { Project } from "~/types/projects"
 useSeoMeta({
-    titleTemplate(title) {
-        return `${title} - danishrashidin`
-    },
     title: "Home",
     description: "Danish Rashidin's Portfolio",
     ogDescription: "Danish Rashidin's Portfolio",
+})
+useNavbarOptions({
+    dark: true
 })
 
 const { data: skills } = await useFetch('/api/skill/list', {
@@ -13,10 +14,12 @@ const { data: skills } = await useFetch('/api/skill/list', {
         limit: 12
     }
 })
+
+const { data: projects, pending } = useFetch<Project[]>('/api/projects/display')
 </script>
 <template>
     <!-- HERO -->
-    <section class="bg-neutral-900 min-h-screen flex flex-col justify-center items-start py-20">
+    <section class="bg-neutral-900 min-h-screen flex flex-col justify-center items-start py-20 lg:pt-24">
         <UContainer class="w-full">
             <div class="lg:w-2/3 flex flex-col md:items-start">
                 <div class="flex flex-col items-start mb-20">
@@ -48,7 +51,7 @@ const { data: skills } = await useFetch('/api/skill/list', {
     <!-- About Him Section -->
     <section id="about" class="pt-12 lg:pt-20 pb-16 bg-white">
         <UContainer class="flex flex-col items-center max-w-4xl">
-            <h2 class="text-center text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 lg:mb-10">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold text-neutral-900 mb-8 lg:mb-10">
                 About Me</h2>
             <p class="text-center text-base md:text-lg font-normal text-gray-500 mb-12">I'm Danish, a Software Engineering
                 graduate from the University of Malaya, Kuala Lumpur, currently exploring various roles in the tech
@@ -72,10 +75,10 @@ const { data: skills } = await useFetch('/api/skill/list', {
     <section id="skills" class="pt-12 lg:pt-20 pb-16 bg-neutral-100">
         <UContainer>
             <div class="flex flex-col items-center gap-4">
-                <h1 class="text-center text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-8">Skills
+                <h1 class="text-center text-4xl lg:text-5xl font-bold text-neutral-900 mb-8">Skills
                 </h1>
                 <div
-                    class="max-w-64 md:max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 mb-12">
+                    class="max-w-64 md:max-w-lg lg:max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 mb-12">
                     <div v-for="skill in skills" class="flex flex-row gap-3 items-center">
                         <NuxtImg v-if="!!skill.iconUrl" class="h-5 w-5" :src="skill.iconUrl" />
                         <p class="text-left text-sm font-medium text-neutral-700 grow">{{ skill.name }}</p>
@@ -97,9 +100,9 @@ const { data: skills } = await useFetch('/api/skill/list', {
     <section id="projects" class="pt-12 lg:pt-20 pb-16 bg-white">
         <UContainer>
             <div class="flex flex-col items-center">
-                <h1 class="ttext-center text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 mb-12 lg:mb-16">My Past
+                <h1 class="text-center text-4xl lg:text-5xl font-bold text-neutral-900 mb-12 md:mb-16">My Past
                     Projects</h1>
-                <ProjectGrid class="mb-12 max-w-6xl" />
+                <ProjectGrid class="mb-12 max-w-96 lg:max-w-6xl" :projects="projects" :loading="pending" />
                 <MyButton to="/projects" class="self-center">View All Projects</MyButton>
             </div>
         </UContainer>

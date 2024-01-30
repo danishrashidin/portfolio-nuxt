@@ -16,24 +16,23 @@ const links = [{
 }]
 
 const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
-
 const navbarRef = useState<HTMLElement | null>('navbar-ref', () => null)
 const isNavbarVisible = useElementVisibility(navbarRef)
+const isNavbarDark = useState("navbar-dark-mode", () => false)
 </script>
 
 <template>
-    <UContainer ref="navbarRef" as="nav" class="z-10">
-        <div
-            class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 border-b-2 border-dashed border-neutral-500 gap-x-12">
-            <Logo class="text-white" />
+    <UContainer ref="navbarRef" as="nav" class="absolute z-10 top-0 inset-x-0" :class="[isNavbarDark && 'dark']">
+        <div class="w-full lg:mx-auto flex flex-row items-center justify-between px-2 py-3 gap-x-12">
+            <Logo class="dark:text-white text-neutral-900" />
             <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-8">
                     <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
-                        class="transition-all text-sm font-medium hover:underline underline-offset-4 tracking-wide text-white">
+                        class="transition-all text-sm font-medium hover:underline underline-offset-4 tracking-wide dark:text-white text-neutral-700">
                         {{ link.label }}
                     </NuxtLink>
                 </div>
-                <MyButton variant="secondary" to="#contact">Contact Me</MyButton>
+                <MyButton variant="default" to="/#contact">Contact Me</MyButton>
             </div>
             <UButton class="lg:hidden" color="white" size="lg" variant="link" :ui="{
                 icon: {
@@ -44,8 +43,8 @@ const isNavbarVisible = useElementVisibility(navbarRef)
     </UContainer>
 
     <!-- Sticky -->
-    <UContainer as="nav" class="fixed top-0 inset-x-0 z-10 pt-2.5 transition-all" :class="{
-        '-translate-y-full delay-300': isNavbarVisible
+    <UContainer as="nav" class="fixed top-0 inset-x-0 z-10 pt-2.5 transition-all scale-100" :class="{
+        '-translate-y-full delay-300 scale-0': isNavbarVisible
     }">
         <div
             class="w-full lg:mx-auto lg:w-fit flex flex-row items-center justify-between rounded-xl p-1.5 border border-slate-200/50 backdrop-blur bg-slate-50/75 gap-x-12">
@@ -57,10 +56,10 @@ const isNavbarVisible = useElementVisibility(navbarRef)
                         {{ link.label }}
                     </NuxtLink>
                 </div>
-                <MyButton to="#contact">Contact Me</MyButton>
+                <MyButton to="/#contact">Contact Me</MyButton>
             </div>
-            <UButton class="lg:hidden" color="gray" size="lg" variant="ghost"
-                icon="i-heroicons-bars-3-bottom-right-20-solid" @click="toggleNavDrawerShown(true)" />
+            <UButton class="lg:hidden" size="lg" variant="ghost" icon="i-heroicons-bars-3-bottom-right-20-solid"
+                @click="toggleNavDrawerShown(true)" />
         </div>
     </UContainer>
     <USlideover class="lg:hidden" v-model="isNavDrawerShown" :ui="{
