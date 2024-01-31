@@ -15,7 +15,7 @@ const { data: skills } = await useFetch('/api/skill/list', {
     }
 })
 
-const { data: projects, pending } = useFetch<Project[]>('/api/projects/display')
+const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api/projects/list')
 </script>
 <template>
     <!-- HERO -->
@@ -102,7 +102,7 @@ const { data: projects, pending } = useFetch<Project[]>('/api/projects/display')
             <div class="flex flex-col items-center">
                 <h1 class="text-center text-4xl lg:text-5xl font-bold text-neutral-900 mb-12 md:mb-16">My Past
                     Projects</h1>
-                <ProjectGrid class="mb-12 max-w-96 md:max-w-none" :projects="projects" :loading="pending" />
+                <ProjectGrid class="mb-12 max-w-96 md:max-w-none" :projects="projects" :loading="isProjectsLoading" />
                 <MyButton to="/projects" class="self-center">View All Projects</MyButton>
             </div>
         </UContainer>

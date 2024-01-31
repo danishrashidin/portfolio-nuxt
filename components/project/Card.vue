@@ -30,7 +30,7 @@ defineProps<Props>()
                     <NuxtLink v-if="!!project.githubPage" :to="project.githubPage" target="_blank" alt="Github Repo">
                         <Github :size="20" class="hover:scale-110 transition-transform" />
                     </NuxtLink>
-                    <NuxtLink :to="`/projects/${project.id}`" target="_blank" alt="View">
+                    <NuxtLink :to="`/projects/${project.id}`" alt="View">
                         <ArrowUpRightSquare :size="20" class="hover:scale-110 transition-transform" />
                     </NuxtLink>
                 </div>

@@ -23,6 +23,10 @@ export interface Project {
      */
     skills: string[]
     /**
+     * JSON-based Rich Text Content
+     */
+    content?: any
+    /**
      * Project Link
      */
     link?: string

@@ -27,6 +27,38 @@ query GetProjectDisplays {
   }
 }
 
+# Get Project Details
+query GetProjectDetails($id: ID!) {
+  project(id: $id) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        title
+        description
+        content
+        link
+        githubPage
+        skills {
+          data {
+            id
+            attributes {
+              text
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 # Get Skills
 query GetSkills($limit: Int, $offset: Int) {
   tags(pagination: { limit: $limit, start: $offset }) {
