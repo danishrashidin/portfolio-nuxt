@@ -3,6 +3,9 @@ import type { Project } from "~/types/projects"
 export default defineEventHandler(async (event) => {
     const id = getRouterParam(event, 'id')
     if (!id) throw Error('No project ID provided')
+
+    const config = useRuntimeConfig(event)
+    const strapiUrl = config.strapiHost
     try {
         const project = (await GqlGetProjectDetails({
             id
@@ -11,7 +14,7 @@ export default defineEventHandler(async (event) => {
             id: project.id,
             title: project.attributes.title,
             description: project.attributes.description,
-            coverUri: project.attributes.cover.data.attributes.url,
+            coverUri: `${strapiUrl}${project.attributes.cover.data.attributes.url}`,
             skills: project.attributes.skills.data.map(({ attributes }: any) => attributes.text),
             content: project.attributes.content,
             link: project.attributes.link,

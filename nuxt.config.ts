@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxtjs/google-fonts",
-    "nuxt-graphql-client"
+    "nuxt-graphql-client",
+    "nuxt-strapi-blocks-renderer"
   ],
   runtimeConfig: {
     strapiHost: process.env.STRAPI_HOST,

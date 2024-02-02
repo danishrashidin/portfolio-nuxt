@@ -51,7 +51,7 @@ const isNavbarDark = useState("navbar-dark-mode", () => false)
             <Logo class="ml-4" />
             <div class="hidden lg:flex flex-row gap-12">
                 <div class="flex flex-row items-center gap-x-8">
-                    <NuxtLink v-for="link in links" :key="link.label" :to="link.to" active-class="underline"
+                    <NuxtLink v-for="link in links" :key="link.label" :to="link.to"
                         class="text-sm font-normal hover:text-gray-900 leading-relaxed text-gray-600">
                         {{ link.label }}
                     </NuxtLink>
