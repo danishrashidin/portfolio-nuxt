@@ -13,7 +13,7 @@ defineProps<Props>()
 </script>
 
 <template>
-    <Card class="group hover:drop-shadow-lg transition-all">
+    <Card class="group md:hover:drop-shadow-lg transition-all">
         <div class="min-h-48 w-full p-6 md:p-8 bg-neutral-100 flex items-center justify-center">
             <NuxtImg :src="project.coverUri"
                 class="h-full w-full object-contain object-center rounded-md drop-shadow group-hover:scale-[0.98] transition-all" />

@@ -36,7 +36,7 @@ const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api
                         Kuala
                         Lumpur 🇲🇾
                     </p>
-                    <MyButton variant="secondary" to="#">View My Work</MyButton>
+                    <MyButton variant="secondary" to="/projects">View My Work</MyButton>
                 </div>
                 <Suspense>
                     <HeatmapGithubContributions class="w-full md:w-fit" />
