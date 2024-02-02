@@ -38,7 +38,8 @@ module.exports = {
       },
     },
   },
-  plugins: [animate, require('@tailwindcss/forms')({
-    strategy: "base"
-  })],
+  plugins: [animate,
+    require('@tailwindcss/typography'), require('@tailwindcss/forms')({
+      strategy: "base"
+    })],
 }

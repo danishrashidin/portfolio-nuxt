@@ -16,9 +16,8 @@ useSeoMeta({
 </script>
 
 <template>
-    <section id="hero"
-        class="min-h-[70vh] pt-32 pb-24 md:pt-40 md:pb-32 flex flex-col items-center justify-center bg-neutral-50">
-        <UContainer class="w-full">
+    <section id="hero" class="min-h-[70vh] flex flex-col items-center justify-center bg-neutral-50">
+        <UContainer class="w-full pt-32 pb-24 md:pt-40 border-b border-gray-200">
             <div class="flex flex-col md:flex-row md:items-center gap-8 lg:gap-16">
                 <!-- Project Title & Stacks Info -->
                 <div class="flex flex-col md:w-1/2">
@@ -48,10 +47,13 @@ useSeoMeta({
             </div>
         </UContainer>
     </section>
+
     <!-- Data -->
-    <section class="pb-12 bg-neutral-50">
+    <section class="py-12 lg:py-24 bg-neutral-50">
         <UContainer>
-            <StrapiBlocksText :nodes="project?.content" />
+            <article class="mx-auto prose lg:prose-lg">
+                <StrapiBlocksText :nodes="project?.content" />
+            </article>
         </UContainer>
     </section>
 </template>

@@ -76,6 +76,14 @@ export default defineNuxtConfig({
       })
     }
   },
+  components: {
+    dirs: [
+      {
+        path: '~/components',
+      },
+    ],
+    global: true,
+  },
   routeRules: {
     "/": {
       ssr: false,
