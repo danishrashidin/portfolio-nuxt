@@ -7,8 +7,12 @@
     @apply scroll-smooth transition-all;
   }
 
+  html {
+    @apply scroll-pt-16;
+  }
+
   body {
-    @apply bg-neutral-900;
+    @apply scroll-pt-16 bg-neutral-900;
   }
 }
 

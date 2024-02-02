@@ -22,7 +22,8 @@ const navbarRef = useState<HTMLElement | null>('navbar-ref', () => null)
 const isNavbarVisible = useElementVisibility(navbarRef)
 const isNavbarDark = useState("navbar-dark-mode", () => false)
 
-watch(() => route.fullPath, () => {
+watch(() => route.fullPath, (value, oldValue) => {
+    if (value === oldValue) return
     toggleNavDrawerShown(false)
 })
 </script>

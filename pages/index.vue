@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Mail, Linkedin, MessageCircle } from "lucide-vue-next";
 import type { Project } from "~/types/projects"
 useSeoMeta({
     title: "Home",
@@ -109,8 +110,32 @@ const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 lg:py-24 bg-neutral-900">
+    <section id="contact" class="py-16 lg:py-32 bg-neutral-900">
         <UContainer>
+            <h1 class="text-center text-4xl lg:text-5xl font-bold text-neutral-50 mb-12 md:mb-16">Let's do business</h1>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-3">
+                <NuxtLink to="mailto:danishrashidin@gmail.com"
+                    class="group flex flex-col rounded-lg border border-neutral-800 hover:bg-neutral-800 p-6">
+                    <Mail :stroke-width="1.5" class="text-white mb-8" />
+                    <p class="text-left text-xl font-medium text-neutral-300 mb-2 group-hover:text-neutral-200">Drop me an
+                        email!</p>
+                    <p
+                        class="text-left text-base font-normal text-neutral-200 group-hover:text-neutral-100 group-hover:underline underline-offset-4">
+                        danishrashidin@gmail.com</p>
+                </NuxtLink>
+                <NuxtLink to="https://github.com/danishrashidin"
+                    class="group flex flex-col rounded-lg border border-neutral-800 hover:bg-neutral-800 p-6">
+                    <Linkedin :stroke-width="1.5" class="text-white mb-8" />
+                    <p class="text-left text-xl font-medium text-neutral-300 group-hover:text-neutral-200">Message me
+                        in LinkedIn!</p>
+                </NuxtLink>
+                <NuxtLink to="https://wa.me/60182218897"
+                    class="group flex flex-col rounded-lg border border-neutral-800 hover:bg-neutral-800 p-6">
+                    <MessageCircle :stroke-width="1.5" class="text-white mb-8" />
+                    <p class="text-left text-xl font-medium text-neutral-300 group-hover:text-neutral-200">Message me
+                        through WhatsApp!</p>
+                </NuxtLink>
+            </div>
         </UContainer>
     </section>
 </template>
