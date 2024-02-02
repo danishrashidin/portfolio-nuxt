@@ -11,10 +11,12 @@ const links = [{
 }, {
     label: "Projects",
     to: "/projects",
-}, {
-    label: "Resume",
-    to: "/resume"
-}]
+},
+    // {
+    //     label: "Resume",
+    //     to: "/resume"
+    // }
+]
 
 const route = useRoute()
 const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
