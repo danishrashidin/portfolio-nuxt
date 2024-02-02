@@ -1,5 +1,11 @@
 {
-  "name": "nuxt-app",
+  "name": "portfolio-nuxt",
+  "version": "1.0.0",
+  "author": {
+    "name": "danishrashidin",
+    "email": "danishrashidin@gmail.com",
+    "url": "https://danishrashidin.com"
+  },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/color-mode": "^3.3.2",
