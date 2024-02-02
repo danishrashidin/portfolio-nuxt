@@ -123,7 +123,7 @@ const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api
                         class="text-left text-base font-normal text-neutral-200 group-hover:text-neutral-100 group-hover:underline underline-offset-4">
                         danishrashidin@gmail.com</p>
                 </NuxtLink>
-                <NuxtLink to="https://github.com/danishrashidin"
+                <NuxtLink to="https://www.linkedin.com/in/danishrashidin/"
                     class="group flex flex-col rounded-lg border border-neutral-800 hover:bg-neutral-800 p-6">
                     <Linkedin :stroke-width="1.5" class="text-white mb-8" />
                     <p class="text-left text-xl font-medium text-neutral-300 group-hover:text-neutral-200">Message me
