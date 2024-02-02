@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Logo from '~/components/brand/Logo.vue';
 import Socials from '~/components/brand/Socials.vue';
+import { AlignRight } from 'lucide-vue-next';
 const links = [{
     label: "About",
     to: "/#about"
@@ -15,10 +16,15 @@ const links = [{
     to: "/resume"
 }]
 
+const route = useRoute()
 const [isNavDrawerShown, toggleNavDrawerShown] = useToggle(false)
 const navbarRef = useState<HTMLElement | null>('navbar-ref', () => null)
 const isNavbarVisible = useElementVisibility(navbarRef)
 const isNavbarDark = useState("navbar-dark-mode", () => false)
+
+watch(() => route.fullPath, () => {
+    toggleNavDrawerShown(false)
+})
 </script>
 
 <template>
@@ -34,11 +40,9 @@ const isNavbarDark = useState("navbar-dark-mode", () => false)
                 </div>
                 <MyButton variant="default" to="/#contact">Contact Me</MyButton>
             </div>
-            <UButton class="lg:hidden" color="white" size="lg" variant="link" :ui="{
-                icon: {
-                    base: 'text-white'
-                }
-            }" icon="i-heroicons-bars-3-bottom-right-20-solid" @click="toggleNavDrawerShown(true)" />
+            <MyButton class="lg:hidden" variant="link" @click="toggleNavDrawerShown(true)">
+                <AlignRight :stroke-width="1.5" />
+            </MyButton>
         </div>
     </UContainer>
 
@@ -58,8 +62,9 @@ const isNavbarDark = useState("navbar-dark-mode", () => false)
                 </div>
                 <MyButton to="/#contact">Contact Me</MyButton>
             </div>
-            <UButton class="lg:hidden" size="lg" variant="ghost" icon="i-heroicons-bars-3-bottom-right-20-solid"
-                @click="toggleNavDrawerShown(true)" />
+            <MyButton class="lg:hidden" variant="link" @click="toggleNavDrawerShown(true)">
+                <AlignRight :stroke-width="1.5" />
+            </MyButton>
         </div>
     </UContainer>
     <USlideover class="lg:hidden" v-model="isNavDrawerShown" :ui="{
@@ -69,10 +74,11 @@ const isNavbarDark = useState("navbar-dark-mode", () => false)
             <div class="flex flex-col gap-y-4 ">
                 <UButton color="gray" size="lg" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="self-end"
                     @click="toggleNavDrawerShown(false)" />
-                <UVerticalNavigation :links="links" :ui="{
-                    wrapper: 'relative flex flex-col gap-2'
+                <UVerticalNavigation :links="[{ label: 'Home', to: '/' }, ...links]" :ui="{
+                    wrapper: 'relative flex flex-col gap-2',
+                    padding: 'px-4 py-3'
                 }" />
-                <MyButton to="#contact" class="self-end">Contact Me</MyButton>
+                <MyButton to="/#contact" class="self-end">Contact Me</MyButton>
             </div>
             <Socials class="self-end" />
         </div>
