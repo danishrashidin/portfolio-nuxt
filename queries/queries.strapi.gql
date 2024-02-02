@@ -1,0 +1,75 @@
+# Get Project Displays for Home Page
+query GetProjectDisplays {
+  projects(pagination: { limit: 3 }) {
+    data {
+      id
+      attributes {
+        title
+        description
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        skills {
+          data {
+            attributes {
+              text
+            }
+          }
+        }
+        link
+        githubPage
+      }
+    }
+  }
+}
+
+# Get Project Details
+query GetProjectDetails($id: ID!) {
+  project(id: $id) {
+    data {
+      id
+      attributes {
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        title
+        description
+        content
+        link
+        githubPage
+        skills {
+          data {
+            id
+            attributes {
+              text
+              slug
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# Get Skills
+query GetSkills($limit: Int, $offset: Int) {
+  tags(pagination: { limit: $limit, start: $offset }) {
+    data {
+      id
+      attributes {
+        slug
+        text
+        iconUrl
+        proficiency
+      }
+    }
+  }
+}

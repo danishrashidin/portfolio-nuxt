@@ -1,0 +1,17 @@
+query GetContributionsCalendar {
+  viewer {
+    contributionsCollection {
+      contributionCalendar {
+        colors
+        weeks {
+          contributionDays {
+            date
+            contributionCount
+            contributionLevel
+          }
+        }
+        totalContributions
+      }
+    }
+  }
+}

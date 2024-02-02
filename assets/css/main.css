@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth transition-all;
+  }
+
+  html {
+    @apply scroll-pt-16;
+  }
+
+  body {
+    @apply scroll-pt-16 bg-neutral-900;
+  }
+}
+
+.ch-domain-text {
+  @apply text-xs font-normal fill-gray-500;
+}
+
+.ch-domain-bg {
+  @apply fill-transparent;
+}
