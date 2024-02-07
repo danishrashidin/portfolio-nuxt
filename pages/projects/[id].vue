@@ -50,8 +50,9 @@ useSeoMeta({
 
     <!-- Data -->
     <section class="py-12 lg:py-24 bg-neutral-50">
-        <UContainer>
-            <article class="mx-auto prose prose-neutral lg:prose-lg">
+        <UContainer class="flex flex-col">
+            <article
+                class="mx-auto prose prose-neutral lg:prose-lg prose-img:rounded-lg prose-img:border prose-img:border-gray-200 prose-img:drop-shadow-sm">
                 <StrapiBlocksText :nodes="project?.content" />
             </article>
         </UContainer>
