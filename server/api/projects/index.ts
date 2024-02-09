@@ -5,9 +5,16 @@ import type { Project } from "~/types/projects"
  */
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event)
+    const query = getQuery<{
+        limit?: string
+        offset?: string
+    }>(event)
     const strapiUrl = config.strapiHost
     try {
-        const projects = (await GqlGetProjectDisplays()).projects.data
+        const projects = (await GqlGetProjects({
+            limit: Number(query.limit),
+            offset: Number(query.offset)
+        })).projects.data
 
         return projects.map((project: any) => {
             const { title, description, cover, skills, link, githubPage } = project.attributes
