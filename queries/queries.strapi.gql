@@ -1,6 +1,6 @@
-# Get Project Displays for Home Page
-query GetProjectDisplays {
-  projects(pagination: { limit: 3 }) {
+# Get Projects
+query GetProjects($limit: Int, $offset: Int) {
+  projects(pagination: { limit: $limit, start: $offset }) {
     data {
       id
       attributes {

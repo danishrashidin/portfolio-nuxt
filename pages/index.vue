@@ -16,7 +16,11 @@ const { data: skills } = await useFetch('/api/skill/list', {
     }
 })
 
-const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api/projects/list')
+const { data: projects, pending: isProjectsLoading } = useFetch<Project[]>('/api/projects', {
+    query: {
+        limit: 3
+    }
+})
 </script>
 <template>
     <!-- HERO -->

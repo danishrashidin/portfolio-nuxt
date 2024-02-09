@@ -7,7 +7,7 @@ useNavbarOptions({
     dark: false
 })
 
-const { data: projects, pending: isProjectsLoading } = useFetch('/api/projects/list')
+const { data: projects, pending: isProjectsLoading } = useFetch('/api/projects')
 </script>
 
 <template>
